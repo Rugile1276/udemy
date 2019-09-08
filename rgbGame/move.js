@@ -5,6 +5,7 @@ var easyBtn = document.querySelector("#easy");
 var hardBtn = document.querySelector("#hard");
 var header = document.querySelector("#header");
 var secondRow = document.querySelector(".secondRow");
+var message = document.querySelector("#message");
 
 var randomColor;
 var winCardNumber;
@@ -16,6 +17,9 @@ var gameType = 6;
 $(document).ready(function(){
 	createNewBoard();
 });
+
+
+// Listeners for changing game type EASY -> HARD HARD -> EASY
 
 easyBtn.addEventListener("click", function () {
 
@@ -42,28 +46,43 @@ hardBtn.addEventListener("click", function () {
 
 });
 
+// Listener for changing board to new colors
+
 newColorBtn.addEventListener("click", function () {
-	resetBoard();
 	createNewBoard();
 })
 
-	for (var i = 0; getCards().length > i; i++) {
-		cards = getCards();
-		cards[i].addEventListener("click", function () {
-			if (this == cards[winCardNumber]){
-				for (var j = 0; cards.length > j; j++) {
-					cards[j].style.background = this.style.background;
+// Loop to add "click" actions to each card
 
-				}
-				header.style.background = this.style.background;
-			}else {
-				removeCard(this);
-			}
-		})
+for (var i = 0; getCards().length > i; i++) {
+	cards = getCards();
+	cards[i].addEventListener("click", function () {
+		if (this == cards[winCardNumber]){
+			message.textContent = "Correct!";
+			newColorBtn.textContent = "PLAY AGAIN?";
+			changeColorsAfterWin(this);
+		}else {
+			message.textContent = "Try again!";
+			removeCard(this);
+		}
+	})
+}
+
+function changeColorsAfterWin (card) {
+	for (var j = 0; gameType > j; j++) {
+		cards[j].classList.remove("d-none");
+		cards[j].style.background = card.style.background;
+
 	}
+	header.style.background = card.style.background;
+}
+
+
 
 function createNewBoard () {
-	resetBoard();
+	header.style.background = "#4f81b0";
+	message.textContent = "";
+	newColorBtn.textContent = "NEW COLORS";
 
 	cards = getCards();
 	winCardNumber = getRandomNumber();
@@ -78,6 +97,7 @@ function createNewBoard () {
 	}
 }
 
+// Crete RGB string to be displayed in header
 function createRgbString () {
 	rgbString = 'RGB(';
 	for (var i = 0; 2 >= i; i++) {
@@ -92,9 +112,6 @@ function createRgbString () {
 	return rgbString;
 }
 
-function resetBoard () {
-	header.style.background = "#4f81b0";
-}
 
 function getCards () {
 	return document.querySelectorAll(".card-body");

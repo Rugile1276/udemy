@@ -26,4 +26,11 @@
 	color: white;
 }
 
+#newColor:hover{
+	background-color: #4f81b0;
+	color: white;
+}
 
+.card-body{
+	transition: background-color 1s;
+}
