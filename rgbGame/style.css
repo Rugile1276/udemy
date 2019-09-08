@@ -1,0 +1,29 @@
+#header{
+	background-color: #4f81b0;
+	color: white;
+}
+
+#actions{
+	color: #4f81b0;
+}
+#cards{
+	background-color: black;
+	min-height:900px;
+}
+
+.container{
+	max-width: 400px;
+}
+
+.card-body {
+	background-color: red;
+	width: 100px;
+	height: 100px;
+}
+
+.selected {
+	background-color: #4f81b0;
+	color: white;
+}
+
+
