@@ -1,0 +1,12 @@
+<h1>THIS IS CAMPGROUNDS!!</h1>
+
+<% campgrounds.forEach((campground) =>{ %>
+	<div>
+		<h4>
+		<%= campground["name"]%>
+		</h4>
+		<img src="<%= campground["image"] %>">
+	</div>
+<%}) %>
+
+<a href="campgrounds"> View all campgrounds</a>
